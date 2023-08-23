@@ -28,7 +28,15 @@
                 $password= md5($_POST ["password"]);
                 $email=$_POST ['email'];
 
-                // $checkEmail = "select * from ";
+                //checking if email already exist
+                $checkEmail = "select * from auth where email='$email'";
+                $sqls = mysqli_query($conn,$checkEmail);
+                $num = mysqli_fetch_assoc($sqls);
+                if($num>0){
+                    echo "Email is already used";
+                    exit();
+                }
+
 
 
                 $query  = "insert into auth (username,email,password) values('$user','$email','$password')";
@@ -50,4 +58,5 @@
             ?>
         </div>
     </body>
+   
 </html>
