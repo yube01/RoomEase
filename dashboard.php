@@ -19,14 +19,25 @@
     <div class="logo">
         <img src="./assets/logo.png" alt="">
     </div>
+    <button>
+        <a href="logout.php">Logout</a>
+    </button>
     <div class="options">
         <div class="destination"></div>
         <div class="user"></div>
 
     </div>
    </div>
-   <div class="main"></div>
-   <div class="footer"></div>
+   <div class="main">
+   <form method="POST">
+   <h1>Search Hotel</h1>
+    <input type="text" placeholder="Search hotel" name="hotel">
+    <input type="submit" name="submit">
+   </form>
+   </div>
+   <div class="footer">
+    copyright 2023
+   </div>
     
 
    
