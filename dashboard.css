@@ -1,0 +1,84 @@
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: black;
+    color: white;
+    max-width: 100vw;
+}
+.header{
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: rgba(128, 128, 128, 0.318);
+}
+.logo{
+    display: flex;
+    gap: 0.5rem;
+}
+.options{
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+.options button{
+    border: none;
+    background-color: skyblue;
+    padding: 0.5rem;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.options button a{
+    text-decoration: none;
+    color: black;
+}
+.main{
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+
+}
+.card{
+    display: flex;
+    gap: 1rem;
+    border: 1px solid grey;
+    padding: 1rem;
+    border-radius: 10px;
+    align-items: center;
+}
+
+.hotelImg img{
+      height: 250px;
+      object-fit: cover;
+      width: 350px;
+}
+.details{
+    display: flex;
+    flex-direction: column;
+}
+.hdetails{
+    display: flex;
+    flex-direction: column;
+}
+.hotelImg{
+    border-right: 1px solid grey;
+    padding: 0.5rem;
+}
+.hname{
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: rgb(12, 172, 236);
+}
+.loc{
+    display: flex;
+    gap: 1rem;
+    color: skyblue;
+}
+
+.footer{
+    text-align: center;
+    background-color: rgba(128, 128, 128, 0.318);
+    padding: 2rem;
+}
