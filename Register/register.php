@@ -21,9 +21,11 @@
                 <input type="submit" value="Submit" name="submit"> 
             </form>
             <a href="../login/login.php">Login page</a>
+            <h1>Do you want to become host?</h1>
+            <a href="../admin/adminRegister.php">Register here</a>
             <?php
             include "../dbConfig.php";
-            require "../login/login.php";
+            
             if(isset($_POST['submit'])){
                 $user = $_POST["username"];
                 $password= md5($_POST ["password"]);

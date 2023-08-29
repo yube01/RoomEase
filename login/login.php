@@ -63,6 +63,7 @@
 
 
                 $_SESSION['user_id'] = $userId['username'];
+                $_SESSION['id'] = $userId['Id'];
                 $role = $userId['isAdmin'];
                 if ($role == 0) {
                     header("Location: ../user/dashboard.php");
