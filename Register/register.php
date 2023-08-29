@@ -20,9 +20,10 @@
                 <br>
                 <input type="submit" value="Submit" name="submit"> 
             </form>
-            <a href="login.php">Login page</a>
+            <a href="../login/login.php">Login page</a>
             <?php
-            include "dbConfig.php";
+            include "../dbConfig.php";
+            require "../login/login.php";
             if(isset($_POST['submit'])){
                 $user = $_POST["username"];
                 $password= md5($_POST ["password"]);

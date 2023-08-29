@@ -18,10 +18,11 @@
             <br>
             <input type="submit" value="Submit" name="submit">
         </form>
-        <a href="register.php">Register page</a>
+        <a href="../Register/register.php">Register page</a>
         <?php
         session_start();
-        include "dbConfig.php";
+        include "../dbConfig.php";
+        
         if (isset($_POST['submit'])) {
             $user = $_POST["username"];
             $password = md5($_POST["password"]);
@@ -64,11 +65,11 @@
                 $_SESSION['user_id'] = $userId['username'];
                 $role = $userId['isAdmin'];
                 if ($role == 0) {
-                    header("Location: dashboard.php");
+                    header("Location: ../user/dashboard.php");
                     exit();
 
                 } elseif ($role == 1) {
-                    header("Location: adminPanel.php");
+                    header("Location: ../admin/adminPanel.php");
                     exit();
                 } else {
                     echo "server error";

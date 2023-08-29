@@ -22,7 +22,8 @@
             </form>
             <a href="login.php">Login page</a>
             <?php
-            include "dbConfig.php";
+            include "../dbConfig.php";
+            include "../login/login.php";
             if(isset($_POST['submit'])){
                 $user = $_POST["username"];
                 $password= md5($_POST ["password"]);

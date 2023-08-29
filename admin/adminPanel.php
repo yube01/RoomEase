@@ -27,34 +27,47 @@
 
     <?php
 
+    session_start();
+
+    if (isset($_SESSION['user_id'])) {
+
+        echo "welcome" . $_SESSION['user_id'];
+    }else{
+        header("location:login.php");
+    }
+
     include "dbConfig.php";
-    if(isset($_POST['submit'])){
+    if (isset($_POST['submit'])) {
         $location = $_POST["loc"];
-        $desc =$_POST["des"];
+        $desc = $_POST["des"];
         $longlat = $_POST["lng"];
         $Picture = $_FILES['Picture']['name'];
         $temp = $_FILES['Picture']['tmp_name'];
-        $folder="picture/".$Picture;
-        move_uploaded_file($temp, $folder);
+        $folder = "picture/" . $Picture;
+        if (move_uploaded_file($temp, $folder)) {
+            echo "file moved";
+        } else {
+            echo "file not moved";
+        }
 
-       
 
 
-                $query  = "insert into room (Location,Descr,Longlat,Images) values('$location','$desc','$longlat','$folder')";
-                $sql = mysqli_query($conn,$query);
 
-                if($sql){
-                    
-                
-                    echo "data inserted";
-                }else{
-                    echo "not inserted";
-                }
+        $query = "insert into room (Location,Descr,Longlat,Images) values('$location','$desc','$longlat','$folder')";
+        $sql = mysqli_query($conn, $query);
+
+        if ($sql) {
+
+
+            echo "data inserted";
+        } else {
+            echo "not inserted";
+        }
     }
 
 
 
-?>
+    ?>
 
 </body>
 
