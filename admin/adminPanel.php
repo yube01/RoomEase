@@ -40,7 +40,7 @@
 
     include "../dbConfig.php";
     if (isset($_POST['submit'])) {
-        $location = $_POST["loc"];
+        $location = strtolower($_POST["loc"]);
         $desc = $_POST["des"];
         $longlat = $_POST["lng"];
         $Picture = $_FILES['Picture']['name'];

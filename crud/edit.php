@@ -27,11 +27,11 @@
 
                                   if(isset($_GET['Id'])){
                                     $itemId = $_GET['Id'];
-                                    echo $itemId;
+                                    
                                    
 
                               
-                                    $location = $_POST["loc"];
+                                    $location = strtolower($_POST["loc"]);
                                     $desc = $_POST["des"];
                                     $longlat = $_POST["lng"];
                                     $Picture = $_FILES['Picture']['name'];

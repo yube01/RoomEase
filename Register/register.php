@@ -47,7 +47,7 @@
 
                 if($sql){
                     
-                    header("Location: login.php");
+                    header("Location: ../login/login.php");
                     exit();
                 }else{
                     echo "not inserted";
