@@ -2,28 +2,42 @@
 
 <head>
     <title>Login page</title>
+    <link rel="stylesheet" href="../Register/register.css">
 </head>
 
 <body>
+
     <div class="container">
-        <p>Login</p>
+        <h1>Login</h1>
         <form method="POST">
-            Username:
-            <br>
-            <input type="text" placeholder="Enter Username" name="username">
-            <br>
-            Password
-            <br>
-            <input type="password" name="password">
-            <br>
-            <input type="submit" value="Submit" name="submit">
+            <p>Username</p>
+
+            <input type="text" name="username" required>
+
+
+
+            <p>Password</p>
+
+            <input type="password" name="password" required>
+
+            <button value="Submit" name="submit"> Register </button>
         </form>
-        <a href="../Register/register.php">Register page</a>
-        <?php
+        <div class="login">
+            <p>Don't have a account?</p>
+            <a href="../Register/register.php">Register</a>
+        </div>
+
+    </div>
+    <?php
         session_start();
         include "../dbConfig.php";
-        
+
         if (isset($_POST['submit'])) {
+            ?>
+             <div class="db">
+
+
+<?php
             $user = $_POST["username"];
             $password = md5($_POST["password"]);
 
@@ -33,7 +47,7 @@
             $numCheck = mysqli_num_rows($userCheck);
 
             if ($numCheck == 0) {
-                echo "username is not created yet";
+                echo "User doesn't exist";
                 exit();
             }
 
@@ -85,6 +99,9 @@
             } else {
                 echo "error";
             }
+            ?>
+             </div>
+            <?php
 
 
 
@@ -93,7 +110,6 @@
 
         }
         ?>
-    </div>
 </body>
 
 </html>

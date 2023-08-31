@@ -1,36 +1,44 @@
 <html>
     <head>
-        <title>Admin Register page</title>
+        <title>Host Register page</title>
+        <link rel="stylesheet" href="../Register/register.css">
     </head>
     <body>
         <div class="container">
-            <p>Register</p>
+        <h1>Host Register</h1>
             <form method="POST">
-                Username:
-                <br>
-                <input type="text" placeholder="Enter Username" name="username" required>
-                <br>
-                Email
-                <br>
-                <input type="email" placeholder="Enter email" name="email" required>
-                <br>
-                Password
-                <br>
+                <p>Username</p>
+                
+                <input type="text" name="username" required>
+               
+                <p>Email</p>
+               
+                <input type="email" name="email" required>
+             
+                <p>Password</p>
+               
                 <input type="password" name="password" required>
-                <br>
-                <input type="submit" value="Submit" name="submit"> 
+                
+                <button value="Submit" name="submit"> Register </button>
             </form>
-            <a href="../login/login.php">Login page</a>
+            <div class="login">
+            <p>Do you already have a account ?</p>
+            <a href="../login/login.php">Login</a>
+            </div>
             <?php
             include "../dbConfig.php";
             
             if(isset($_POST['submit'])){
+                ?>
+                <div class="db">
+
+                <?php
                 $user = $_POST["username"];
                 $password= md5($_POST ["password"]);
                 $email=$_POST ['email'];
 
                 //checking if email already exist
-                $checkEmail = "select * from auth where email='$email'";
+                $checkEmail = "select * from auth where email='$email' and isAdmin = '1'";
                 $sqls = mysqli_query($conn,$checkEmail);
                 $num = mysqli_fetch_assoc($sqls);
                 if($num>0){
@@ -50,6 +58,10 @@
                 }else{
                     echo "not inserted";
                 }
+                ?>
+                </div>
+
+                <?php
 
                 
 
@@ -57,6 +69,7 @@
 
             }
             ?>
+
         </div>
     </body>
    
