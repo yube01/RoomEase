@@ -20,7 +20,7 @@
 
             <input type="password" name="password" required>
 
-            <button value="Submit" name="submit"> Register </button>
+            <button value="Submit" name="submit"> Login </button>
         </form>
         <div class="login">
             <p>Don't have a account?</p>

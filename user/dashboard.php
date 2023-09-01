@@ -35,6 +35,8 @@
                 header("location:../login/login.php");
             }
 
+            $userId = $_SESSION['id'];
+            echo $userId;
 
 
             ?>
@@ -51,7 +53,7 @@
             <input type="submit" name="submit">
             <?php
 
-            if(isset($_POST['submit'])){
+            if (isset($_POST['submit'])) {
                 $name = $_POST['search'];
                 header("Location: search.php?search=$name");
 
@@ -102,6 +104,26 @@
 
 
 
+                    </div>
+                    <div class="book">
+                        <?php
+                        $roomId  = $row['roomId'];
+                        $checkBook = "select * from book where userId='$userId'and roomId = '$roomId' and userBook = '1'";
+                        $result4 = mysqli_query($conn,$checkBook);
+                        $num = mysqli_num_rows($result4);
+                        if($num > 0){
+                            echo "you have already booked";
+
+                        }else{
+                            ?>
+                             <a href="booking.php?Id=<?php echo $userId?>&Room=<?php echo $row['roomId'] ?>">Book</a>
+                            <?php
+
+                        }
+
+
+                        ?>
+                       
                     </div>
                 </div>
 
