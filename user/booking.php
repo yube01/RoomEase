@@ -30,8 +30,9 @@
         if(isset($_GET['Id'])){
             $userId = $_GET['Id'];
             $roomId = $_GET['Room'];
+            $adminId = $_GET['secondId'];
            
-        $fname = $_POST['fnmae'];
+        $fname = $_POST['fname'];
         $lname = $_POST['lname'];
         $phone = $_POST['phone'];
         $Picture = $_FILES['citizen']['name'];
@@ -43,11 +44,12 @@
             echo "file not moved";
         }
 
-        $query = "insert into book (phone,firstName,lastName,citizenship,userId,roomId,userBook) values ('$phone','$fname','$lname','$folder','$userId','$roomId',1)";
+        $query = "insert into book (phone,firstName,lastName,citizenship,userId,roomId,userBook,adminId) values ('$phone','$fname','$lname','$folder','$userId','$roomId',1,'$adminId')";
         $result = mysqli_query($conn,$query);
 
         if($result){
-            echo "booked";
+            
+            header("location:dashboard.php");
         }else{
             echo "not booked";
         }

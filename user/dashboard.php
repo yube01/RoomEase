@@ -66,7 +66,7 @@
         <h1>Available Rooms</h1>
         <?php
 
-        $query = "select * from room";
+        $query = "select * from room order by rand()";
         $result = mysqli_query($conn, $query);
         $num = mysqli_num_rows($result);
         if ($num > 0) {
@@ -116,7 +116,7 @@
 
                         }else{
                             ?>
-                             <a href="booking.php?Id=<?php echo $userId?>&Room=<?php echo $row['roomId'] ?>">Book</a>
+                             <a href="booking.php?Id=<?php echo $userId?>&Room=<?php echo $row['roomId'] ?>&secondId=<?php echo $row['adminId']  ?>">Book</a>
                             <?php
 
                         }
