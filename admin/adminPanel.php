@@ -6,6 +6,51 @@
 </head>
 
 <body>
+<div class="header">
+        <div class="logo">
+            <img src="../assets/logo.png" alt="" height="50px">
+            <p>EscapePlanner</p>
+        </div>
+
+        <div class="options">
+            <?php
+              session_start();
+
+              if (isset($_SESSION['user_id'])) {
+          
+                  echo $_SESSION['user_id'];
+              } else {
+                  header("location:../login/login.php");
+              }
+              $userId = $_SESSION['id'];
+            
+          
+              include "../dbConfig.php";
+
+
+            ?>
+            <div class="noti">
+               
+                <div class="icon"><img src="../assets/565422.png" alt=""></div>
+                <?php
+                $qu = "select * from book inner join room on book.roomId = room.roomId where book.adminId = '$userId' and book.bookStatus = '3'";
+                $re = mysqli_query($conn, $qu);
+        
+                $noti = mysqli_num_rows($re);
+                ?>
+                <div class="notin"><?php echo $noti?></div>
+                <?php
+
+                ?>
+                
+            </div>
+
+            <button>
+                <a href="../logout/logout.php">Logout</a>
+            </button>
+
+        </div>
+    </div>
     <h1>Admin Dashboard</h1>
     <form method="POST" enctype="multipart/form-data">
         Location
@@ -28,18 +73,7 @@
 
     <?php
 
-    session_start();
-
-    if (isset($_SESSION['user_id'])) {
-
-        echo "welcome" . $_SESSION['user_id'];
-    } else {
-        header("location:../login/login.php");
-    }
-    $userId = $_SESSION['id'];
-    echo $userId;
-
-    include "../dbConfig.php";
+  
     if (isset($_POST['submit'])) {
         $location = strtolower($_POST["loc"]);
         $desc = $_POST["des"];
@@ -138,7 +172,7 @@
         <h1>Book Request</h1>
         <?php
 
-        $qu = "select * from book inner join room on book.roomId = room.roomId where book.adminId = '$userId' and book.bookStatus = '0'";
+        $qu = "select * from book inner join room on book.roomId = room.roomId where book.adminId = '$userId' and book.bookStatus = '3'";
         $re = mysqli_query($conn, $qu);
 
         $nums = mysqli_num_rows($re);
@@ -185,7 +219,9 @@
                     <div class="bookbtn">
                         <?php if ($row['bookStatus'] == 1) {
                             echo "book accepted";
-                        } else {
+                        } 
+                        
+                        else {
                             ?>
                             <a href="bookStatus.php?bookId=<?php echo $row['bookId'] ?>&accept=True&roomId=<?php echo $row['roomId']?>"
                                 onclick="return confirm('Do you want to accept?')">Accept</a>

@@ -40,6 +40,21 @@
 
 
             ?>
+            <div class="noti">
+               
+               <div class="icon"><img src="../assets/565422.png" alt=""></div>
+               <?php
+               $qu = "select * from book where userId = '$userId'";
+               $re = mysqli_query($conn, $qu);
+       
+               $noti = mysqli_num_rows($re);
+               ?>
+               <div class="notin"><?php echo $noti?></div>
+               <?php
+
+               ?>
+               
+           </div>
 
             <button>
                 <a href="../logout/logout.php">Logout</a>
@@ -107,23 +122,30 @@
                     </div>
                     <div class="book">
                         <?php
-                        $roomId  = $row['roomId'];
-                        $checkBook = "select * from book where userId='$userId'and roomId = '$roomId' and userBook = '1'";
-                        $result4 = mysqli_query($conn,$checkBook);
+                        $roomId = $row['roomId'];
+                        $checkBook = "select * from book where userId='$userId'and roomId = '$roomId' and bookStatus in ('1','2','3')";
+                        $result4 = mysqli_query($conn, $checkBook);
                         $num = mysqli_num_rows($result4);
-                        if($num > 0){
-                            echo "you have already booked";
+                        $rows = mysqli_fetch_assoc($result4);
 
-                        }else{
+                        if ($rows['bookStatus'] == 3) {
+                            echo "Approval Pending";
+
+                        } else if ($rows['bookStatus'] == 2) {
+                            echo "Rejected";
+                        } else if ($rows['bookStatus'] == 1) {
+                            echo "Accepted";
+                        } else {
                             ?>
-                             <a href="booking.php?Id=<?php echo $userId?>&Room=<?php echo $row['roomId'] ?>&secondId=<?php echo $row['adminId']  ?>">Book</a>
+                                    <a
+                                        href="booking.php?Id=<?php echo $userId ?>&Room=<?php echo $row['roomId'] ?>&secondId=<?php echo $row['adminId'] ?>">Book</a>
                             <?php
 
                         }
 
 
                         ?>
-                       
+
                     </div>
                 </div>
 

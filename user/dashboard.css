@@ -10,7 +10,7 @@ body{
     display: flex;
     justify-content: space-between;
     padding: 1rem;
-    background-color: rgba(128, 128, 128, 0.318);
+    background-color: rgba(255, 68, 0, 0.599);
 }
 .logo{
     display: flex;
@@ -21,6 +21,31 @@ body{
     gap: 0.5rem;
     align-items: center;
 }
+.noti{
+    display: flex;
+    position: relative;
+}
+
+.notin{
+    position: absolute;
+    left: 13px;
+    background-color: red;
+    padding: 3px;
+    border-radius: 62%;
+    font-size: 13px;
+    bottom: 11px;
+    height: 15px;
+    display: flex;
+    align-items: center;
+    width: 14px;
+    justify-content: center;
+    font-weight: bolder;
+  }
+  .icon img{
+    height: 1.4rem;
+    width: 1.4rem;
+  }
+
 .options button{
     border: none;
     background-color: skyblue;

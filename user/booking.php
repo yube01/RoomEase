@@ -44,7 +44,7 @@
             echo "file not moved";
         }
 
-        $query = "insert into book (phone,firstName,lastName,citizenship,userId,roomId,userBook,adminId) values ('$phone','$fname','$lname','$folder','$userId','$roomId',1,'$adminId')";
+        $query = "insert into book (phone,firstName,lastName,citizenship,userId,roomId,adminId,bookStatus) values ('$phone','$fname','$lname','$folder','$userId','$roomId','$adminId',3)";
         $result = mysqli_query($conn,$query);
 
         if($result){

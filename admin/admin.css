@@ -2,7 +2,58 @@ body{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    background-image: url("../assets/pexels-max-rahubovskiy-5998138.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    max-width: 100vw;
+    height: max-content;
+    background-position: center;
+    background-attachment: fixed;
+    position: relative;
+    
 }
+.header{
+    display: flex;
+    background-color: rgba(255, 166, 0, 0.669);
+    justify-content: space-between;
+    padding: 1rem;
+    align-items: center;
+    position: sticky;
+    top: 0;
+}
+.logo{
+    display: flex;
+    gap: 0.5rem;
+}
+.options{
+    display: flex;
+    gap: 1rem;
+}
+.noti{
+    display: flex;
+    position: relative;
+}
+
+.notin{
+    position: absolute;
+    left: 13px;
+    background-color: red;
+    padding: 3px;
+    border-radius: 62%;
+    font-size: 13px;
+    bottom: 11px;
+    height: 15px;
+    display: flex;
+    align-items: center;
+    width: 14px;
+    justify-content: center;
+    font-weight: bolder;
+  }
+  .icon img{
+    height: 1.4rem;
+    width: 1.4rem;
+  }
+
 
 .hostView{
     display: flex;
@@ -21,10 +72,28 @@ body{
     border: 1px solid black;
     
 }
+.hotelImg img{
+    height: 15rem;
+    width: 17rem;
+    object-fit: cover;
+}
 
 .userDetail{
     display: flex;
 }
 .i{
     display: flex;
+}
+
+.userImg img{
+     height: 15rem;
+    width: 17rem;
+    object-fit: cover;
+
+}
+.roomImg img{
+     height: 15rem;
+    width: 17rem;
+    object-fit: cover;
+
 }
