@@ -45,6 +45,7 @@
         }
 
         $query = "insert into book (phone,firstName,lastName,citizenship,userId,roomId,adminId,bookStatus) values ('$phone','$fname','$lname','$folder','$userId','$roomId','$adminId',3)";
+        
         $result = mysqli_query($conn,$query);
 
         if($result){

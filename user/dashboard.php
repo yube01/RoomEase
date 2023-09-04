@@ -4,6 +4,7 @@
     <title>EscapePlanner</title>
     <link rel="icon" type="image/x-icon" href="/assets/logo.ico">
     <link rel="stylesheet" href="./dashboard.css">
+    
 
 </head>
 
@@ -42,7 +43,7 @@
             ?>
             <div class="noti">
                
-               <div class="icon"><img src="../assets/565422.png" alt=""></div>
+            <a href="status.php?userId=<?php echo $userId ?>"><img src="../assets/565422.png" alt="" class="imgs"></a>
                <?php
                $qu = "select * from book where userId = '$userId'";
                $re = mysqli_query($conn, $qu);
@@ -81,7 +82,7 @@
         <h1>Available Rooms</h1>
         <?php
 
-        $query = "select * from room order by rand()";
+        $query = "select * from room";
         $result = mysqli_query($conn, $query);
         $num = mysqli_num_rows($result);
         if ($num > 0) {

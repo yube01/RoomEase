@@ -20,7 +20,8 @@ if(isset($_GET['accept'])){
             $updateRestQuery = "UPDATE book SET bookStatus='2' WHERE roomId = '$roomId' AND bookId != '$bookId'";
             $sqls = mysqli_query($conn,$updateRestQuery);
             if($sqls){
-                header("location:adminPanel.php");
+                echo "updated";
+                header("location:bookRequest.php?userId=$userId");
 
             }else{
                 echo "error";
@@ -37,6 +38,7 @@ if(isset($_GET['reject'])){
     if(isset($_GET['bookId'])){
 
         $bookId = $_GET['bookId'];
+        $userId = $_GET['userId'];
      
         
         
@@ -44,7 +46,8 @@ if(isset($_GET['reject'])){
         $sql = mysqli_query($conn,$accept);
         if($sql){
             echo "value updated";
-            header("location:adminPanel.php");
+            header("location:bookRequest.php?userId=$userId");
+          
         }else{
             echo "error";
         }
