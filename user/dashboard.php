@@ -4,6 +4,7 @@
     <title>EscapePlanner</title>
     <link rel="icon" type="image/x-icon" href="/assets/logo.ico">
     <link rel="stylesheet" href="./dashboard.css">
+    <link rel="stylesheet" href="../main.css">
     
 
 </head>
@@ -27,46 +28,11 @@
 
 
                 ?>
-                <div class="username">
-                    <?php echo $_SESSION['user_id']; ?>
-                </div>
-
-                <?php
-            } else {
-                header("location:../login/login.php");
-            }
-
-            $userId = $_SESSION['id'];
-            echo $userId;
-
-
-            ?>
-            <div class="noti">
-               
-            <a href="status.php?userId=<?php echo $userId ?>"><img src="../assets/565422.png" alt="" class="imgs"></a>
-               <?php
-               $qu = "select * from book where userId = '$userId'";
-               $re = mysqli_query($conn, $qu);
-       
-               $noti = mysqli_num_rows($re);
-               ?>
-               <div class="notin"><?php echo $noti?></div>
-               <?php
-
-               ?>
-               
-           </div>
-
-            <button>
-                <a href="../logout/logout.php">Logout</a>
-            </button>
-
-        </div>
-    </div>
-    <div class="search">
-        <form method="POST">
-            <input type="text" name="search">
-            <input type="submit" name="submit">
+                        
+        <form method="POST" class="search">
+            <input type="text" name="search" class="in" placeholder="Search the location">
+            <input type="submit" style="background-image: url('../assets/search-interface-symbol.png'); background-size: contain;" name="submit" value="" class="s2">
+            
             <?php
 
             if (isset($_POST['submit'])) {
@@ -77,12 +43,56 @@
 
             ?>
         </form>
+                <div class="username">
+                    <?php echo $_SESSION['user_id']; ?>
+                </div>
+
+                <?php
+            } else {
+                header("location:../login/login.php");
+            }
+            ?>
+         
+            <?php
+
+            $userId = $_SESSION['id'];
+            
+
+
+            ?>
+        
+            <div class="noti">
+               
+            <a href="status.php?userId=<?php echo $userId ?>"><img src="../assets/565422.png" alt="" class="imgs">
+            <?php
+               $qu = "select * from book where userId = '$userId'";
+               $re = mysqli_query($conn, $qu);
+       
+               $noti = mysqli_num_rows($re);
+               ?>
+               <div class="notin"><?php echo $noti?></div>
+               <?php
+
+               ?></a>
+               
+               
+           </div>
+
+            <button>
+                <a href="../logout/logout.php">Logout</a>
+            </button>
+
+        </div>
     </div>
+    <h1>Available Rooms</h1>
     <div class="main">
-        <h1>Available Rooms</h1>
+        
         <?php
 
-        $query = "select * from room";
+        $query = "SELECT room.*
+        FROM room
+        LEFT JOIN book ON room.roomId = book.roomId AND book.userId = '$userId'
+        WHERE book.roomId IS NULL;";
         $result = mysqli_query($conn, $query);
         $num = mysqli_num_rows($result);
         if ($num > 0) {

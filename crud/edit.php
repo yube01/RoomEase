@@ -42,7 +42,7 @@
                                     } else {
                                         echo "file not moved";
                                     }
-                                    $sql = "UPDATE room SET Location = '$location', Descr = '$desc', Longlat = '$longlat', Images = '$folder' WHERE Id = '$itemId'";
+                                    $sql = "UPDATE room SET Location = '$location', Descr = '$desc', Longlat = '$longlat', Images = '$folder' WHERE roomId = '$itemId'";
                                     $result2 = mysqli_query($conn, $sql);
                                     if($result2){
                                         echo "edited";

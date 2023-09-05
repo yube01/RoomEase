@@ -31,8 +31,8 @@
             ?>
             <div class="noti">
                
-               <a href="bookRequest.php?userId=<?php echo $userId ?>"><img src="../assets/565422.png" alt="" class="imgs"></a>
-                <?php
+               <a href="bookRequest.php?userId=<?php echo $userId ?>"><img src="../assets/565422.png" alt="" class="imgs">
+               <?php
                 $qu = "select * from book inner join room on book.roomId = room.roomId where book.adminId = '$userId' and book.bookStatus = '3'";
                 $re = mysqli_query($conn, $qu);
         
@@ -42,6 +42,7 @@
                 <?php
 
                 ?>
+                </a>
                 
             </div>
 
@@ -51,6 +52,8 @@
 
         </div>
     </div>
+    <div class="mainContent">
+    <div class="addRoom">
     <h1>Admin Dashboard</h1>
     <form method="POST" enctype="multipart/form-data">
         Location
@@ -107,7 +110,8 @@
 
 
     ?>
-    <a href="../logout/logout.php">logout</a>
+    </div>
+    
     <div class="hostView">
         <h1>Your Listings</h1>
         <?php
@@ -152,8 +156,8 @@
 
                     </div>
                     <div class="crud active">
-                        <a href="../crud/edit.php?Id=<?php echo $row['Id'] ?>">Edit</a>
-                        <a href="../crud/delete.php?Id=<?php echo $row['Id'] ?>">Delete</a>
+                        <a href="../crud/edit.php?Id=<?php echo $row['roomId'] ?>">Edit</a>
+                        <a href="../crud/delete.php?Id=<?php echo $row['roomId'] ?>">Delete</a>
 
 
 
@@ -167,6 +171,7 @@
         }
 
         ?>
+    </div>
     </div>
     
 
