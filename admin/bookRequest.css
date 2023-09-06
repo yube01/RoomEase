@@ -1,0 +1,103 @@
+body{
+    position: relative;
+}
+
+.mainBody{
+    display: flex;
+    padding: 1rem;
+    justify-content: space-between;
+}
+
+
+.bookRequest .card{
+    width: 70rem;
+    display: flex;
+    align-items: center;
+    
+    
+}
+.userDetail{
+    display: flex;
+    flex-direction: column;
+    
+}
+.userInfo{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.citi img{
+    height: 5rem;
+    width: 5rem;
+    object-fit: cover;
+}
+.user1{
+    display: flex;
+    gap: 1rem;
+    font-size: 1.5rem;
+    align-items: center;
+    margin-top: 1.3rem;
+    padding: 0.8rem;
+    border-bottom: 1px solid black;
+}
+.status{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    position: fixed;
+    right: 5;
+    top: 135;
+    
+}
+.accepted{
+    background-color: rgb(44, 226, 44);
+    
+    height: 20rem;
+    width: 25rem;
+    overflow: scroll;
+    position: relative;
+}
+.title{
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2);
+    background-color: rgb(6, 247, 6);
+    width: 25rem;
+    position: sticky;
+    top: 0;
+    padding: 0.8rem;
+    font-size: 2rem;
+    
+}
+.rejected{
+    background-color: rgb(235, 53, 53);
+    height: 20rem;
+    width: 25rem;
+    overflow: scroll;
+    position: relative;
+}
+.title2{
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2);
+    background-color: rgb(247, 42, 6);
+    width: 25rem;
+    position: sticky;
+    top: 0;
+    padding: 0.8rem;
+    font-size: 2rem;
+    
+}
+
+
+.bookbtn{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+}
+
+.bookbtn a{
+    color: white;
+    padding: 0.8rem;
+    text-decoration: none;
+    font-weight: 900;
+    border-radius: 10px;
+}

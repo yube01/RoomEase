@@ -8,10 +8,12 @@
 
 <body>
 <div class="header">
-        <div class="logo">
+<a href="adminPanel.php">
+         <div class="logo">
             <img src="../assets/logo.png" alt="" height="50px">
             <p>EscapePlanner</p>
         </div>
+       </a>
 
         <div class="options">
             <?php
@@ -62,33 +64,38 @@
         
         <div class="in">
         <span>Place Name</span>
-        <input type="text" placeholder="Eg: New Road, Kathmandu" name="loc">
+        <input required="true" type="text" placeholder="Eg: New Road" name="loc">
+        </div>
+        <div class="in">
+        <span>District</span>
+       
+        <input required="true" type="text" placeholder="Eg: Kathmandu" name="dis">
         </div>
         <div class="in">
         <span>Description</span>
        
-        <input type="text" placeholder="About your room" name="des">
+        <input required="true" type="text" placeholder="About your room" name="des">
         </div>
         <div class="in">
         <span>Longitude and Latitude</span>
-        <input type="text" placeholder="Eg : 27.700769, 85.300140" name="lng">
+        <input required="true" type="text" placeholder="Eg : 27.700769, 85.300140" name="lng">
         </div>
         <div class="in">
         <span>Price</span>
        <div class="ins"> <select name="curr" id="">
-            <option value="Npr" name="curr">NPR</option>
+            <option value="NPR" name="curr">NPR</option>
             <option value="$" name="curr">$</option>
-            <option value="Inr" name="curr">INR</option>
-            <option value="Yen" name="curr">YEN</option>
+            <option value="INR" name="curr">INR</option>
+            <option value="£" name="curr">£</option>
         </select>
-        <input type="number" name="price" placeholder="Room price"></div>
+        <input required="true" type="number" name="price" placeholder="Room price"></div>
         </div>
         
        
         
         <div class="in">
         <span>Images</span>
-        <input type="file" name="Picture">
+        <input required="true" type="file" name="Picture">
         </div>
         <button type="submit" name="submit">Submit</button>
       
@@ -114,6 +121,7 @@
         $folder = "../picture/" . $Picture;
         $curr = $_POST['curr'];
         $price = $_POST['price'];
+        $dis = $_POST['dis'];
 
         if (move_uploaded_file($temp, $folder)) {
             echo "file moved";
@@ -124,7 +132,7 @@
 
 
 
-        $query = "insert into room (Location,Descr,Longlat,Images,adminId,currency,price,date) values('$location','$desc','$longlat','$folder','$userId','$curr','$price',NOW())";
+        $query = "insert into room (Location,Descr,Longlat,Images,adminId,currency,price,date,district) values('$location','$desc','$longlat','$folder','$userId','$curr','$price',NOW(),'$dis')";
         $sql = mysqli_query($conn, $query);
 
         if ($sql) {
@@ -158,13 +166,14 @@
                 ?>
 
                 <div class="card">
-                    <div class="hotelImg">
+                   <div class="first"> <div class="hotelImg">
                         <img src="<?php echo $row['Images'] ?>" alt="">
                     </div>
                     <div class="details">
                         <div class="hdetails">
                             <p class="hname">
-                                <?php echo $row['Location'] ?>
+                                <?php echo $row['Location'] ?> ,
+                                <?php echo $row['district'] ?>
                             </p>
                             <span class="loc">
                                 <p>
@@ -176,19 +185,70 @@
                         <div class="desc">
                             <?php echo $row['Descr'] ?>
                         </div>
-                        <div class="rooms">
-                            <?php echo $row['Descr'] ?>
-                        </div>
+                        
                         <div class="price">
+                        <p>Includes taxes and fees</p>
                             <p>
-                                <?php echo $row['Id'] ?>
+                            <?php echo $row['currency'] ?>   <?php echo $row['price'] ?>
                             </p>
-                            <p>Includes taxes and fees</p>
+                            
+                        </div>
+                        <div class="datePosted">
+                            <?php
+                            
+
+                            // Convert the date string to a Unix timestamp
+                            $timestamp = strtotime($row['date']);
+                            
+                            if ($timestamp === false) {
+                                echo "Invalid date format";
+                            } else {
+                                // Calculate the time elapsed since the given date
+                                $currentTime = time();
+                                $elapsedTime = $timestamp - $currentTime;
+                            
+                                // You can format the elapsed time as needed, for example, in minutes, hours, days, etc.
+                                if ($elapsedTime < 60) {
+                                    // Less than 1 minute, show in seconds
+                                    $elapsedUnit = "second";
+                                    $elapsedValue = $elapsedTime;
+                                } elseif ($elapsedTime < 3600) {
+                                    // Less than 1 hour, show in minutes
+                                    $elapsedUnit = "minute";
+                                    $elapsedValue = floor($elapsedTime / 60);
+                                } elseif ($elapsedTime < 86400) {
+                                    // Less than 1 day, show in hours
+                                    $elapsedUnit = "hour";
+                                    $elapsedValue = floor($elapsedTime / 3600);
+                                }  elseif ($elapsedTime < 2592000) {
+                                    // Less than 30 days, show in days
+                                    $elapsedUnit = "day";
+                                    $elapsedValue = floor($elapsedTime / 86400);
+                                } elseif ($elapsedTime < 31536000) {
+                                    // Less than 365 days (1 year), show in months
+                                    $elapsedUnit = "month";
+                                    $elapsedValue = floor($elapsedTime / 2592000); // assuming 30 days per month
+                                } else {
+                                    // More than 1 year, show in years
+                                    $elapsedUnit = "year";
+                                    $elapsedValue = floor($elapsedTime / 31536000); // assuming 31,536,000 seconds per year
+                                }
+                            
+                                // Display the elapsed time in the appropriate unit
+                                if ($elapsedValue == 1) {
+                                    echo "Uploaded: $elapsedValue $elapsedUnit ago" ;
+                                } else {
+                                    echo "Uploaded: $elapsedValue {$elapsedUnit}s ago";
+                                }
+                            }
+
+
+?>
                         </div>
 
 
 
-                    </div>
+                    </div></div>
                     <div class="crud">
                         <a href="../crud/edit.php?Id=<?php echo $row['roomId'] ?>" id="edit">Edit</a>
                         <a href="../crud/delete.php?Id=<?php echo $row['roomId'] ?>" id="delete">Delete</a>
