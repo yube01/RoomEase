@@ -3,6 +3,7 @@
 <head>
     <title>Admin Panel</title>
     <link rel="stylesheet" href="./admin.css">
+    <link rel="stylesheet" href="../main.css">
 </head>
 
 <body>
@@ -18,7 +19,9 @@
 
               if (isset($_SESSION['user_id'])) {
           
-                  echo $_SESSION['user_id'];
+                  ?>
+                  <div class="user"><?php echo $_SESSION['user_id'];?></div>
+                  <?php
               } else {
                   header("location:../login/login.php");
               }
@@ -54,36 +57,64 @@
     </div>
     <div class="mainContent">
     <div class="addRoom">
-    <h1>Admin Dashboard</h1>
+    <h1>Add Room Detail</h1>
     <form method="POST" enctype="multipart/form-data">
-        Location
-        <br>
-        <input type="text" placeholder="Location" name="loc">
-        <br>
-        description
-        <br>
-        <input type="text" placeholder="description" name="des">
-        <br>
-        Longitude and Latitude
-        <br>
-        <input type="text" placeholder="Actual Location" name="lng">
-        <br>
-        Images
+        
+        <div class="in">
+        <span>Place Name</span>
+        <input type="text" placeholder="Eg: New Road, Kathmandu" name="loc">
+        </div>
+        <div class="in">
+        <span>Description</span>
+       
+        <input type="text" placeholder="About your room" name="des">
+        </div>
+        <div class="in">
+        <span>Longitude and Latitude</span>
+        <input type="text" placeholder="Eg : 27.700769, 85.300140" name="lng">
+        </div>
+        <div class="in">
+        <span>Price</span>
+       <div class="ins"> <select name="curr" id="">
+            <option value="Npr" name="curr">NPR</option>
+            <option value="$" name="curr">$</option>
+            <option value="Inr" name="curr">INR</option>
+            <option value="Yen" name="curr">YEN</option>
+        </select>
+        <input type="number" name="price" placeholder="Room price"></div>
+        </div>
+        
+       
+        
+        <div class="in">
+        <span>Images</span>
         <input type="file" name="Picture">
-        <br>
-        <input type="submit" name="submit">
+        </div>
+        <button type="submit" name="submit">Submit</button>
+      
     </form>
 
     <?php
 
   
     if (isset($_POST['submit'])) {
+
+
+        $checkPost = "select adminId from room where adminId = '$userId'";
+        $res = mysqli_query($conn,$checkPost);
+        $rows = mysqli_num_rows($res);
+        
+
+       if($rows<= 2){
         $location = strtolower($_POST["loc"]);
         $desc = $_POST["des"];
         $longlat = $_POST["lng"];
         $Picture = $_FILES['Picture']['name'];
         $temp = $_FILES['Picture']['tmp_name'];
         $folder = "../picture/" . $Picture;
+        $curr = $_POST['curr'];
+        $price = $_POST['price'];
+
         if (move_uploaded_file($temp, $folder)) {
             echo "file moved";
         } else {
@@ -93,7 +124,7 @@
 
 
 
-        $query = "insert into room (Location,Descr,Longlat,Images,adminId) values('$location','$desc','$longlat','$folder',$userId)";
+        $query = "insert into room (Location,Descr,Longlat,Images,adminId,currency,price,date) values('$location','$desc','$longlat','$folder','$userId','$curr','$price',NOW())";
         $sql = mysqli_query($conn, $query);
 
         if ($sql) {
@@ -103,6 +134,9 @@
         } else {
             echo "not inserted";
         }
+       }else{
+        echo "You can only post two room";
+    }
     }
 
 
@@ -155,9 +189,9 @@
 
 
                     </div>
-                    <div class="crud active">
-                        <a href="../crud/edit.php?Id=<?php echo $row['roomId'] ?>">Edit</a>
-                        <a href="../crud/delete.php?Id=<?php echo $row['roomId'] ?>">Delete</a>
+                    <div class="crud">
+                        <a href="../crud/edit.php?Id=<?php echo $row['roomId'] ?>" id="edit">Edit</a>
+                        <a href="../crud/delete.php?Id=<?php echo $row['roomId'] ?>" id="delete">Delete</a>
 
 
 
