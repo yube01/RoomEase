@@ -74,7 +74,7 @@
         <div class="in">
         <span>Description</span>
        
-        <input required="true" type="text" placeholder="About your room" name="des">
+        <textarea required="true" type="text" placeholder="About your room" name="des" cols="30" rows="10"></textarea>
         </div>
         <div class="in">
         <span>Longitude and Latitude</span>
@@ -196,51 +196,52 @@
                         <div class="datePosted">
                             <?php
                             
-
+                            echo "Date: " . $row['date'];
                             // Convert the date string to a Unix timestamp
-                            $timestamp = strtotime($row['date']);
+                            // $timestamp = strtotime($row['date']);
                             
-                            if ($timestamp === false) {
-                                echo "Invalid date format";
-                            } else {
-                                // Calculate the time elapsed since the given date
-                                $currentTime = time();
-                                $elapsedTime = $timestamp - $currentTime;
                             
-                                // You can format the elapsed time as needed, for example, in minutes, hours, days, etc.
-                                if ($elapsedTime < 60) {
-                                    // Less than 1 minute, show in seconds
-                                    $elapsedUnit = "second";
-                                    $elapsedValue = $elapsedTime;
-                                } elseif ($elapsedTime < 3600) {
-                                    // Less than 1 hour, show in minutes
-                                    $elapsedUnit = "minute";
-                                    $elapsedValue = floor($elapsedTime / 60);
-                                } elseif ($elapsedTime < 86400) {
-                                    // Less than 1 day, show in hours
-                                    $elapsedUnit = "hour";
-                                    $elapsedValue = floor($elapsedTime / 3600);
-                                }  elseif ($elapsedTime < 2592000) {
-                                    // Less than 30 days, show in days
-                                    $elapsedUnit = "day";
-                                    $elapsedValue = floor($elapsedTime / 86400);
-                                } elseif ($elapsedTime < 31536000) {
-                                    // Less than 365 days (1 year), show in months
-                                    $elapsedUnit = "month";
-                                    $elapsedValue = floor($elapsedTime / 2592000); // assuming 30 days per month
-                                } else {
-                                    // More than 1 year, show in years
-                                    $elapsedUnit = "year";
-                                    $elapsedValue = floor($elapsedTime / 31536000); // assuming 31,536,000 seconds per year
-                                }
+                            // if ($timestamp === false) {
+                            //     echo "Invalid date format";
+                            // } else {
+                            //     // Calculate the time elapsed since the given date
+                            //     $currentTime = time();
+                            //     $elapsedTime = $timestamp - $currentTime;
                             
-                                // Display the elapsed time in the appropriate unit
-                                if ($elapsedValue == 1) {
-                                    echo "Uploaded: $elapsedValue $elapsedUnit ago" ;
-                                } else {
-                                    echo "Uploaded: $elapsedValue {$elapsedUnit}s ago";
-                                }
-                            }
+                            //     // You can format the elapsed time as needed, for example, in minutes, hours, days, etc.
+                            //     if ($elapsedTime < 60) {
+                            //         // Less than 1 minute, show in seconds
+                            //         $elapsedUnit = "second";
+                            //         $elapsedValue = $elapsedTime;
+                            //     } elseif ($elapsedTime < 3600) {
+                            //         // Less than 1 hour, show in minutes
+                            //         $elapsedUnit = "minute";
+                            //         $elapsedValue = floor($elapsedTime / 60);
+                            //     } elseif ($elapsedTime < 86400) {
+                            //         // Less than 1 day, show in hours
+                            //         $elapsedUnit = "hour";
+                            //         $elapsedValue = floor($elapsedTime / 3600);
+                            //     }  elseif ($elapsedTime < 2592000) {
+                            //         // Less than 30 days, show in days
+                            //         $elapsedUnit = "day";
+                            //         $elapsedValue = floor($elapsedTime / 86400);
+                            //     } elseif ($elapsedTime < 31536000) {
+                            //         // Less than 365 days (1 year), show in months
+                            //         $elapsedUnit = "month";
+                            //         $elapsedValue = floor($elapsedTime / 2592000); // assuming 30 days per month
+                            //     } else {
+                            //         // More than 1 year, show in years
+                            //         $elapsedUnit = "year";
+                            //         $elapsedValue = floor($elapsedTime / 31536000); // assuming 31,536,000 seconds per year
+                            //     }
+                            
+                            //     // Display the elapsed time in the appropriate unit
+                            //     if ($elapsedValue == 1) {
+                            //         echo "Uploaded: $elapsedValue $elapsedUnit ago" ;
+                            //     } else {
+                            //         echo "Uploaded: $elapsedValue {$elapsedUnit}s ago";
+                            //     }
+                            //}
 
 
 ?>

@@ -153,7 +153,7 @@
         <div class="accepted">
             <span class="title">Accepted User</span>
             <?php
-            $accept = "select firstName,lastName,phone,citizenship from book where adminId = '$userId' and bookStatus = '1'";
+            $accept = "select firstName,lastName,phone,citizenship from book where adminId = '$userId' and bookStatus = '1' ORDER BY bookId DESC";
             $res1 = mysqli_query($conn,$accept);
             $num1 = mysqli_num_rows($res1);
             if($num1 > 0){
@@ -179,7 +179,7 @@
         <div class="rejected">
             <span class="title2">Rejected User</span>
         <?php
-            $accept = "select firstName,lastName,phone,citizenship from book where adminId = '$userId' and bookStatus = '2'";
+            $accept = "select firstName,lastName,phone,citizenship from book where adminId = '$userId' and bookStatus = '2' ORDER BY bookId DESC";
             $res1 = mysqli_query($conn,$accept);
             $num1 = mysqli_num_rows($res1);
             if($num1 > 0){
