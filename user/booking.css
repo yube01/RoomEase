@@ -1,0 +1,35 @@
+body{
+    max-width: 100vw;
+}
+
+.bookDetails{
+    display: flex;
+    padding: 1rem;
+    gap: 2rem;
+    
+}
+.bookRequest .in {
+    margin-bottom: 1rem;
+}
+ .bookRequest .in span{
+    margin-bottom: 0.5rem;
+}
+
+ .bookRequest form button{
+    border: none;
+    padding: 0.7rem 2rem;
+    font-size: 1.3rem;
+    background-color: rgb(104, 104, 249);
+    border-radius: 5px;
+
+}
+
+.imgDetails{
+    display: flex;
+    gap: 2rem;
+}
+.card .desc{
+    height: max-content;
+    border-top: 1px solid black;
+    padding: 0.5rem;
+}

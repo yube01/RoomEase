@@ -251,8 +251,8 @@
 
                     </div></div>
                     <div class="crud">
-                        <a href="../crud/edit.php?Id=<?php echo $row['roomId'] ?>" id="edit">Edit</a>
-                        <a href="../crud/delete.php?Id=<?php echo $row['roomId'] ?>" id="delete">Delete</a>
+                        <a href="../crud/edit.php?Id=<?php echo $row['roomId'] ?>"  id="edit">Edit</a>
+                        <a href="../crud/delete.php?Id=<?php echo $row['roomId'] ?>"  id="delete">Delete</a>
 
 
 

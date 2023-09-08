@@ -1,0 +1,31 @@
+body{
+    min-height: 100vh;
+}
+.bookRequest{
+    padding: 2rem;
+    align-items: center;
+  
+}
+.card{
+      margin-bottom: 1rem;
+}
+.sta{
+    padding: 1rem;
+    font-size: 1.4rem;
+    border-radius: 10px;
+}
+.green{
+    background-color: green;
+}
+
+
+ .red{
+    background-color:red;
+
+}
+
+.yellow{
+    background-color: orange;
+}
+
+

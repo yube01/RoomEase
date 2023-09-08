@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="./dashboard.css">
     <link rel="stylesheet" href="../main.css">
     
+    
 
 </head>
 
@@ -13,11 +14,12 @@
 
 
 <body>
+    <div class="mainContent">
     <div class="header">
-        <div class="logo">
+       <a href="./dashboard.php"> <div class="logo">
             <img src="../assets/logo.png" alt="" height="50px">
             <p>EscapePlanner</p>
-        </div>
+        </div></a>
 
         <div class="options">
             <?php
@@ -100,62 +102,47 @@
                 ?>
 
                 <div class="card">
-                    <div class="hotelImg">
+                    <div class="roomDetails"><div class="hotelImg">
                         <img src="<?php echo $row['Images'] ?>" alt="">
                     </div>
                     <div class="details">
                         <div class="hdetails">
-                            <p class="hname">
-                                <?php echo $row['Location'] ?>
-                            </p>
+                            <span class="hname">
+                                <?php echo $row['Location'] ?> ,
+                                <?php echo $row['district'] ?>
+                            </span>
                             <span class="loc">
                                 <p>
-                                    <?php echo $row['Longlat'] ?>
+                                    Longitude and Latitude : <?php echo $row['Longlat'] ?>
                                 </p>
-                                <p></p>
+                                
                             </span>
                         </div>
                         <div class="desc">
                             <?php echo $row['Descr'] ?>
                         </div>
-                        <div class="rooms">
-                            <?php echo $row['Descr'] ?>
-                        </div>
                         <div class="price">
+                        <p>Includes taxes and fees</p>
                             <p>
-                                <?php echo $row['Id'] ?>
+                            <?php echo $row['currency'] ?>   <?php echo $row['price'] ?>
                             </p>
-                            <p>Includes taxes and fees</p>
+                            
+                        </div>
+                        <div class="datePosted">
+                            <?php
+                            
+                            echo "Date: " . $row['date'];
+                            ?>
                         </div>
 
 
 
-                    </div>
+                    </div></div>
                     <div class="book">
-                        <?php
-                        $roomId = $row['roomId'];
-                        $checkBook = "select * from book where userId='$userId'and roomId = '$roomId' and bookStatus in ('1','2','3')";
-                        $result4 = mysqli_query($conn, $checkBook);
-                        $num = mysqli_num_rows($result4);
-                        $rows = mysqli_fetch_assoc($result4);
-
-                        if ($rows['bookStatus'] == 3) {
-                            echo "Approval Pending";
-
-                        } else if ($rows['bookStatus'] == 2) {
-                            echo "Rejected";
-                        } else if ($rows['bookStatus'] == 1) {
-                            echo "Accepted";
-                        } else {
-                            ?>
+                        
                                     <a
                                         href="booking.php?Id=<?php echo $userId ?>&Room=<?php echo $row['roomId'] ?>&secondId=<?php echo $row['adminId'] ?>">Book</a>
-                            <?php
-
-                        }
-
-
-                        ?>
+                            
 
                     </div>
                 </div>
@@ -177,6 +164,7 @@
     </div>
     <div class="footer">
         copyright 2023
+    </div>
     </div>
 
 

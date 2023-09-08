@@ -2,35 +2,102 @@
 
 <head>
     <title>Booking</title>
+    <link rel="stylesheet" href="./dashboard.css">
+    <link rel="stylesheet" href="./booking.css">
+    <link rel="stylesheet" href="../admin/admin.css">
+    <link rel="stylesheet" href="../main.css">
 </head>
 
 <body>
+<div class="header">
+       <a href="./dashboard.php">
+         <div class="logo">
+            <img src="../assets/logo.png" alt="" height="50px">
+            <p>EscapePlanner</p>
+        </div>
+       </a>
+
+       <div class="options">
+            <?php
+            session_start();
+            include "../dbConfig.php";
+
+            if (isset($_SESSION['user_id'])) {
+
+
+                ?>
+                        
+        
+                <div class="username">
+                    <?php echo $_SESSION['user_id']; ?>
+                </div>
+
+                <?php
+            } else {
+                header("location:../login/login.php");
+            }
+            ?>
+         
+            <?php
+
+            $userId = $_SESSION['id'];
+            
+
+
+            ?>
+        
+            <div class="noti">
+               
+            <a href="status.php?userId=<?php echo $userId ?>"><img src="../assets/565422.png" alt="" class="imgs">
+            <?php
+               $qu = "select * from book where userId = '$userId'";
+               $re = mysqli_query($conn, $qu);
+       
+               $noti = mysqli_num_rows($re);
+               ?>
+               <div class="notin"><?php echo $noti?></div>
+               <?php
+
+               ?></a>
+               
+               
+           </div>
+
+            <button>
+                <a href="../logout/logout.php">Logout</a>
+            </button>
+
+        </div>
+    </div>
+    <div class="bookDetails">
+    <div class="bookRequest">
     <h1>Booking Detail Form</h1>
     <form method="POST" enctype="multipart/form-data">
-        <p>First Name</p>
+        <div class="in"><span>First Name</span>
 
-        <input type="text" name="fname" required>
-        <p>Last Name</p>
+<input type="text" name="fname" required></div>
+        <div class="in"><span>Last Name</span>
 
-        <input type="text" name="lname" required>
-        <p>Phone no</p>
+<input type="text" name="lname" required></div>
+        <div class="in"><span>Phone no</span>
 
-        <input type="number" name="phone" required>
-        <p>Upload Citizenship Image</p>
+<input type="number" name="phone" required></div>
+        <div class="in"><span>Upload Citizenship Image</span>
 
-        <input type="file" name="citizen" required>
+<input type="file" name="citizen" required></div>
 
         <button value="Submit" name="submit"> Book </button>
     </form>
     <?php
     include "../dbConfig.php";
+    if(isset($_GET['Id'])){
+        $userId = $_GET['Id'];
+        $roomId = $_GET['Room'];
+        $adminId = $_GET['secondId'];
    
     if(isset($_POST['submit'])){
 
-        if(isset($_GET['Id'])){
-            $userId = $_GET['Id'];
-            $roomId = $_GET['Room'];
-            $adminId = $_GET['secondId'];
+        
            
         $fname = $_POST['fname'];
         $lname = $_POST['lname'];
@@ -62,6 +129,77 @@
 
 
 ?>
+    </div>
+
+<div class="cards">
+   <h1>Room Details</h1>
+        <?php
+
+        $query = "select * from room where roomId = '$roomId'";
+        $result = mysqli_query($conn, $query);
+        $num = mysqli_num_rows($result);
+        if ($num > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                ?>
+
+                <div class="card">
+                   
+                    <div class="imgDetails">
+                    <div class="hotelImg">
+                        <img src="<?php echo $row['Images'] ?>" alt="">
+                    </div>
+                    <div class="details">
+                        <div class="hdetails">
+                            <p class="hname">
+                                <?php echo $row['Location'] ?> ,
+                                <?php echo $row['district'] ?>
+                            </p>
+                            <span class="loc">
+                                <p>
+                                    Longitude and Latitude : <?php echo $row['Longlat'] ?>
+                                </p>
+                                <p></p>
+                            </span>
+                        </div>
+                        
+                        
+                        <div class="price">
+                        <p>Includes taxes and fees</p>
+                            <p>
+                            <?php echo $row['currency'] ?>   <?php echo $row['price'] ?>
+                            </p>
+                            
+                        </div>
+                        <div class="datePosted">
+                            <?php
+                            
+                            echo "Date: " . $row['date'];
+                           
+
+
+?>
+                        </div>
+
+
+
+                    </div>
+                    </div>
+
+                    <div class="desc">
+                            <?php echo $row['Descr'] ?>
+                        </div>
+                    
+                </div>
+
+                <?php
+            }
+        } else {
+            echo "no data found";
+        }
+
+        ?>
+              </div>
+    </div>
 </body>
 
 </html>

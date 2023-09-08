@@ -138,7 +138,7 @@
                                     $result2 = mysqli_query($conn, $sql);
                                     if($result2){
                                         echo "edited";
-                                        header("location:../admin/adminPanel.php");
+                                        header("location:edit.php?Id=$itemId");
                                     }
                                   
                             

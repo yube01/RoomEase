@@ -1,9 +1,76 @@
 <html>
     <head>
         <title>Status</title>
+        <link rel="stylesheet" href="./userStatus.css">
         <link rel="stylesheet" href="../admin/admin.css">
+        <link rel="stylesheet" href="./dashboard.css">
+        <link rel="stylesheet" href="../main.css">
+        <link rel="stylesheet" href="../admin/bookRequest.css">
+        
+        
     </head>
     <body>
+    <div class="header">
+       <a href="./dashboard.php">
+         <div class="logo">
+            <img src="../assets/logo.png" alt="" height="50px">
+            <p>EscapePlanner</p>
+        </div>
+       </a>
+
+       <div class="options">
+            <?php
+            session_start();
+            include "../dbConfig.php";
+
+            if (isset($_SESSION['user_id'])) {
+
+
+                ?>
+                        
+        
+                <div class="username">
+                    <?php echo $_SESSION['user_id']; ?>
+                </div>
+
+                <?php
+            } else {
+                header("location:../login/login.php");
+            }
+            ?>
+         
+            <?php
+
+            $userId = $_SESSION['id'];
+            
+
+
+            ?>
+        
+            <div class="noti">
+               
+            <a href="status.php?userId=<?php echo $userId ?>"><img src="../assets/565422.png" alt="" class="imgs">
+            <?php
+               $qu = "select * from book where userId = '$userId'";
+               $re = mysqli_query($conn, $qu);
+       
+               $noti = mysqli_num_rows($re);
+               ?>
+               <div class="notin"><?php echo $noti?></div>
+               <?php
+
+               ?></a>
+               
+               
+           </div>
+
+            <button>
+                <a href="../logout/logout.php">Logout</a>
+            </button>
+
+        </div>
+    </div>
+        <div class="bookRequest">
         <h1>Status</h1>
         <?php
         include "../dbConfig.php";
@@ -19,7 +86,9 @@
             while ($row = mysqli_fetch_assoc($re)) {
                 ?>
                 <div class="card">
-                    <div class="userDetail">
+                <div class="userDetail">
+                        <span>User Detail</span>
+                        <div class="userInfo">
                         <div class="userImg">
                             <p>Citizenship:</p>
                             <img src="<?php echo $row['citizenship']; ?>" alt="">
@@ -38,33 +107,63 @@
                                 </p>
                             </div>
                         </div>
-                    </div>
-                    <div class="roomDetail">
-                        <div class="roomImg">
-
-                            <img src="<?php echo $row['Images'] ?>" alt="">
                         </div>
-                        <div class="roomDetail">
+                    </div>
+                    <div class="userDetail">
+                        <span>Room Detail</span>
+                        <div class="userInfo">
+                        <div class="userImg">
+                            <p>Room Image:</p>
+                            <img src="<?php echo $row['Images']; ?>" alt="">
+                        </div>
+                        <div class="info">
                             <div class="i">
                                 <p>Location:</p>
                                 <p>
-                                    <?php echo $row['Location'] ?>
+                                    <?php echo $row['Location'] . " " . $row['lastName'] ?>
                                 </p>
                             </div>
-
+                            <div class="i">
+                                <p>Description:</p>
+                                <p>
+                                    <?php echo $row['Descr'] ?>
+                                </p>
+                            </div>
+                        </div>
                         </div>
                     </div>
                     <div class="bookbtn">
                         <?php if ($row['bookStatus'] == 1) {
-                            echo "book accepted";
+                            ?>
+                            <div class="sta green">
+                                <?php  echo "Book accepted";?>
+
+                            </div>
+
+                            <?php
+                           
                         } 
                         
                         else if($row['bookStatus'] == 2) {
-                            echo "rejected";
+                            ?>
+                            <div class="sta red">
+                                <?php   echo "Rejected";?>
+
+                            </div>
+
+                            <?php
+                           
                             
 
                         }else{
-                            echo "pending";
+                            ?>
+                            <div class="sta yellow">
+                                <?php   echo "Pending";?>
+
+                            </div>
+
+                            <?php
+                           
                         }
                         ?>
 
@@ -84,5 +183,6 @@
         }
 
         ?>
+        </div>
     </body>
 </html>
