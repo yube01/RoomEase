@@ -54,6 +54,9 @@ body{
     display: flex;
     position: relative;
 }
+.noti .notin{
+    color: black;
+}
 .search{
     display: none;
     /* display: flex; */

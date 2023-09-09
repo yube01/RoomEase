@@ -17,8 +17,8 @@
     <div class="mainContent">
     <div class="header">
        <a href="./dashboard.php"> <div class="logo">
-            <img src="../assets/logo.png" alt="" height="50px">
-            <p>EscapePlanner</p>
+       <img src="../assets/Picsart_23-09-09_14-19-01-490.png" alt="" height="100px">
+            <p>RoomEase</p>
         </div></a>
 
         <div class="options">
@@ -163,7 +163,7 @@
 
     </div>
     <div class="footer">
-        copyright 2023
+        Yube © <?php echo date("Y")?>
     </div>
     </div>
 
