@@ -172,6 +172,8 @@
                     </div>
                     <?php
                 }
+            }else{
+                echo "No Record";
             }
 
             ?>
@@ -198,6 +200,8 @@
                     </div>
                     <?php
                 }
+            }else{
+                echo "No record";
             }
 
             ?>

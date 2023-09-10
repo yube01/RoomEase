@@ -85,7 +85,7 @@
         if ($nums > 0) {
             while ($row = mysqli_fetch_assoc($re)) {
                 ?>
-                <div class="card">
+                <div class="card1">
                 <div class="userDetail">
                         <span>User Detail</span>
                         <div class="userInfo">
@@ -120,12 +120,13 @@
                             <div class="i">
                                 <p>Location:</p>
                                 <p>
-                                    <?php echo $row['Location'] . " " . $row['lastName'] ?>
+                                    <?php echo $row['Location'] ?>
                                 </p>
                             </div>
                             <div class="i">
-                                <p>Description:</p>
-                                <p>
+                                
+                                <p id="de"> 
+                                    Description:
                                     <?php echo $row['Descr'] ?>
                                 </p>
                             </div>

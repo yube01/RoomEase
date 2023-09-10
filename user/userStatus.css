@@ -3,11 +3,41 @@ body{
 }
 .bookRequest{
     padding: 2rem;
-    align-items: center;
+    
   
 }
-.card{
+/* .bookRequest .card{
       margin-bottom: 1rem;
+      
+      
+} */
+.card1{
+    display: flex;
+    width: max-content;
+    gap: 3rem;
+    background-color: rgba(0, 255, 255, 0.413);
+    padding: 2rem;
+    border-radius: 10px;
+   
+}
+.info .i{
+    display: flex;
+    width: 15rem;
+}
+
+#de{
+    width: 40rem;
+    height: 10rem;
+    overflow: scroll;
+}
+
+.status{
+    display: flex;
+    flex-direction: column;
+}
+.bookbtn{
+    align-items: center;
+    text-align: center;
 }
 .sta{
     padding: 1rem;
