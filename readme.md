@@ -1,4 +1,5 @@
 # EaseRoom Documentation
+![plot](./assets/Picsart_23-09-09_14-19-01-490.png)
 
 ## Table of Contents
 
