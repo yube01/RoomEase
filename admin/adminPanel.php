@@ -114,7 +114,7 @@
 
        if($rows<= 2){
         $location = strtolower($_POST["loc"]);
-        $desc = $_POST["des"];
+        $desc = htmlspecialchars($_POST["des"]);
         $longlat = $_POST["lng"];
         $Picture = $_FILES['Picture']['name'];
         $temp = $_FILES['Picture']['tmp_name'];
@@ -183,7 +183,7 @@
                             </span>
                         </div>
                         <div class="desc">
-                            <?php echo $row['Descr'] ?>
+                            <?php echo nl2br($row['Descr']) ?>
                         </div>
                         
                         <div class="price">
@@ -251,8 +251,8 @@
 
                     </div></div>
                     <div class="crud">
-                        <a href="../crud/edit.php?Id=<?php echo $row['roomId'] ?>"  id="edit">Edit</a>
-                        <a href="../crud/delete.php?Id=<?php echo $row['roomId'] ?>"  id="delete">Delete</a>
+                        <a href="../crud/edit.php?Id=<?php echo $row['roomId'] ?>&userId=<?php echo $userId?>"  id="edit">Edit</a>
+                        <a href="../crud/delete.php?Id=<?php echo $row['roomId'] ?>&userId=<?php echo $userId?>"  id="delete">Delete</a>
 
 
 

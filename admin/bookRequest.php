@@ -96,7 +96,8 @@
                         <div class="userInfo">
                         <div class="userImg">
                             <p>Citizenship:</p>
-                            <img src="<?php echo $row['citizenship']; ?>" alt="">
+                            <a href="imageView.php?imageId=<?php echo basename($row['citizenship']) ?>&id=<?php echo $userId?>"><img src="<?php echo $row['citizenship']; ?>" alt=""></a>
+                            
                         </div>
                         <div class="info">
                             <div class="i">
@@ -132,7 +133,7 @@
                                 
                                 <p id="de"> 
                                     Description:
-                                    <?php echo $row['Descr'] ?>
+                                    <?php echo nl2br($row['Descr'])?>
                                 </p>
                             </div>
                         </div>

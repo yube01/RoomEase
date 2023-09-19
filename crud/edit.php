@@ -65,6 +65,42 @@
      include "../dbConfig.php";
         if(isset($_GET['Id'])){
             $itemId = $_GET['Id'];
+            $userIds = $_GET['userId'];
+
+
+
+            //checking if user is authorize
+            if(isset($_SESSION['id'])){
+                $session =  $_SESSION['id'];
+                $roomIds = [];
+                $datas = "select roomId from room where adminId = '$userIds'";
+                $re22 = mysqli_query($conn,$datas);
+                while($row = mysqli_fetch_assoc($re22)){
+                    $roomIds[] = $row;
+                }
+                $isPresent = false;
+                foreach ($roomIds as $rows) {
+                    if ($rows['roomId'] == $itemId) {
+                        $isPresent = true;
+                        break;
+                    }
+                }
+                
+                if (!$isPresent) {
+                    header("Location: ../login/login.php");
+                } 
+
+               
+                
+               
+
+                if($session != $userIds){
+                    header("Location: ../login/login.php");
+                }
+
+            }
+
+
             $data = "select * from room where roomId = '$itemId'";
             $re2 = mysqli_query($conn,$data);
             $num = mysqli_num_rows($re2);
@@ -83,7 +119,7 @@
         </div>
         <div class="in">
         <span>Description</span>
-        <textarea required="true" type="text"  name="des" cols="30" rows="10" placeholder="<?php echo $row['Descr']?>"></textarea>
+        <textarea required="true" type="text"  name="des" cols="30" rows="10" ><?php echo $row['Descr']?></textarea>
        
        
         </div>
@@ -106,6 +142,8 @@
         
         <div class="in">
         <span>Images</span>
+        
+
         <input required="true" type="file" name="Picture" value="<?php echo $row['Images']?>">
         </div>
         <button type="submit" name="edit">Submit</button>
@@ -121,7 +159,7 @@
 
                               
                                     $location = strtolower($_POST["loc"]);
-                                    $desc = $_POST["des"];
+                                    $desc = htmlspecialchars($_POST["des"]);
                                     $longlat = $_POST["lng"];
                                     $Picture = $_FILES['Picture']['name'];
                                     $temp = $_FILES['Picture']['tmp_name'];
@@ -138,7 +176,7 @@
                                     $result2 = mysqli_query($conn, $sql);
                                     if($result2){
                                         echo "edited";
-                                        header("location:edit.php?Id=$itemId");
+                                        header("location:edit.php?Id=$itemId&&userId=$userIds");
                                     }
                                   
                             
@@ -187,7 +225,7 @@
                             </span>
                         </div>
                         <div class="desc">
-                            <?php echo $row['Descr'] ?>
+                            <?php echo nl2br($row['Descr']) ?>
                         </div>
                         
                         <div class="price">
