@@ -4,8 +4,11 @@
         <link rel="stylesheet" href="./admin.css">
         <link rel="stylesheet" href="../main.css">
         <link rel="stylesheet" href="./bookRequest.css">
+        <link rel="stylesheet" href="../user/userStatus.css">
+       
     </head>
     <body>
+       
         <div class="header">
        <a href="adminPanel.php">
          <div class="logo">
@@ -17,6 +20,8 @@
         <div class="options">
             <?php
               session_start();
+              
+
 
               if (isset($_SESSION['user_id'])) {
           
@@ -63,6 +68,19 @@
         include "../dbConfig.php";
         if(isset($_GET['userId'])){
             $userId = $_GET['userId'];
+
+
+            //checking if user is authorize
+            if(isset($_SESSION['id'])){
+                $session =  $_SESSION['id'];
+
+                if($session != $userId){
+                    header("Location: ../login/login.php");
+                }
+
+            }
+
+           
             
             $qu = "select * from book inner join room on book.roomId = room.roomId where book.adminId = '$userId' and book.bookStatus = '3'";
         $re = mysqli_query($conn, $qu);
@@ -72,8 +90,8 @@
         if ($nums > 0) {
             while ($row = mysqli_fetch_assoc($re)) {
                 ?>
-                <div class="card">
-                    <div class="userDetail">
+                <div class="card1">
+                <div class="userDetail">
                         <span>User Detail</span>
                         <div class="userInfo">
                         <div class="userImg">
@@ -107,12 +125,13 @@
                             <div class="i">
                                 <p>Location:</p>
                                 <p>
-                                    <?php echo $row['Location'] . " " . $row['lastName'] ?>
+                                    <?php echo $row['Location'] ?>
                                 </p>
                             </div>
                             <div class="i">
-                                <p>Description:</p>
-                                <p>
+                                
+                                <p id="de"> 
+                                    Description:
                                     <?php echo $row['Descr'] ?>
                                 </p>
                             </div>
