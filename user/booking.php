@@ -84,7 +84,7 @@
 <input type="number" name="phone" required></div>
         <div class="in"><span>Upload Citizenship Image</span>
 
-<input type="file" name="citizen" required></div>
+<input type="file" name="citizen" required id="filename"></div>
 
         <button value="Submit" name="submit"> Book </button>
     </form>
@@ -94,6 +94,18 @@
         $userId = $_GET['Id'];
         $roomId = $_GET['Room'];
         $adminId = $_GET['secondId'];
+
+        //checking if user is authorize
+        if(isset($_SESSION['id'])){
+            $session =  $_SESSION['id'];
+
+            if($session != $userId){
+                header("Location: ../denied.html");
+            }
+
+        }
+
+
    
     if(isset($_POST['submit'])){
 
@@ -111,9 +123,11 @@
             echo "file not moved";
         }
 
-        $query = "insert into book (phone,firstName,lastName,citizenship,userId,roomId,adminId,bookStatus) values ('$phone','$fname','$lname','$folder','$userId','$roomId','$adminId',3)";
+        $query = "insert into book (phone,firstName,lastName,citizenship,userId,roomId,adminId,bookStatus)
+         values ('$phone','$fname','$lname','$folder','$userId','$roomId','$adminId',3)";
         
         $result = mysqli_query($conn,$query);
+        echo $result;
 
         if($result){
             

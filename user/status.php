@@ -76,6 +76,16 @@
         include "../dbConfig.php";
         if(isset($_GET['userId'])){
             $userId = $_GET['userId'];
+
+            //checking if user is authorize
+            if(isset($_SESSION['id'])){
+                $session =  $_SESSION['id'];
+
+                if($session != $userId){
+                    header("Location: ../denied.html");
+                }
+
+            }
             
             $qu = "select * from book inner join room on book.roomId = room.roomId where book.userId = '$userId'";
         $re = mysqli_query($conn, $qu);

@@ -8,12 +8,19 @@ body{
     gap: 2rem;
     
 }
+
 .bookRequest .in {
     margin-bottom: 1rem;
+   
+}
+.bookDetails .bookRequest{
+   
+    width: 23rem;
 }
  .bookRequest .in span{
     margin-bottom: 0.5rem;
 }
+
 
  .bookRequest form button{
     border: none;
@@ -21,7 +28,11 @@ body{
     font-size: 1.3rem;
     background-color: rgb(104, 104, 249);
     border-radius: 5px;
+    cursor: pointer;
 
+}
+.in input #filename{
+    width: 2rem;
 }
 
 .imgDetails{

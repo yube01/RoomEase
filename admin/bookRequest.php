@@ -75,7 +75,7 @@
                 $session =  $_SESSION['id'];
 
                 if($session != $userId){
-                    header("Location: ../login/login.php");
+                    header("Location: ../denied.html");
                 }
 
             }
@@ -140,9 +140,10 @@
                         </div>
                     </div>
                     <div class="bookbtn">
-                     
+                
                             <a href="bookStatus.php?bookId=<?php echo $row['bookId'] ?>&accept=True&roomId=<?php echo $row['roomId']?>&userId=<?php echo $userId?>"
                                 onclick="return confirm('Do you want to accept?')"  id="edit">Accept</a>
+                               
                             <?php
 
                         

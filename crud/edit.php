@@ -87,7 +87,7 @@
                 }
                 
                 if (!$isPresent) {
-                    header("Location: ../login/login.php");
+                    header("Location: ../denied.html");
                 } 
 
                
@@ -95,7 +95,7 @@
                
 
                 if($session != $userIds){
-                    header("Location: ../login/login.php");
+                    header("Location: ../denied.html");
                 }
 
             }

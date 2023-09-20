@@ -1,5 +1,8 @@
 <?php
 include "../dbConfig.php";
+
+
+
 if(isset($_GET['accept'])){
     if(isset($_GET['bookId'])){
 
@@ -11,11 +14,14 @@ if(isset($_GET['accept'])){
         
         $accept = "update book set bookStatus='1' where bookId = '$bookId'";
 
+       
 
 
 
        
         $sql = mysqli_query($conn,$accept);
+
+
         if($sql){
             echo "value updated";
             $updateRestQuery = "UPDATE book SET bookStatus='2' WHERE roomId = '$roomId' AND bookId != '$bookId'";
